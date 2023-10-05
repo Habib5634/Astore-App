@@ -15,8 +15,8 @@ const BannerSlider = () => {
           cssEase: "linear"
         };
   return (
-    <div className='p-2 bg-yellow-500  overflow-hidden'><Slider {...settings}>
-    <div className='text-center font-bold'>
+    <div className='p-2 bg-yellow-500    overflow-hidden    '><Slider {...settings}>
+    <div className='text-center font-bold '>
       <h3>CLREANCE SALE! ANY BAG IN 1999 RUPEES</h3>
     </div>
     <div className='text-center font-bold'>

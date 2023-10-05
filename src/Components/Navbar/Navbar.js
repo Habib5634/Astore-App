@@ -16,7 +16,7 @@ const Navbar = () => {
 
   
   return (
-    <nav className="flex items-center justify-between p-4">
+    <nav className="flex items-center justify-between p-4 w-full">
       <div className="flex items-center">
        
           <LuAlignLeft className="text-2xl cursor-pointer md:hidden" onClick={toggleDrawer} />
