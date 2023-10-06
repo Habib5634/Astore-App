@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import {AiOutlineRight} from 'react-icons/ai'
 import { useNavigate } from 'react-router-dom';
 const listItems = [
-    { label: "All", path: "/summer-sales" },
+    { label: "All", path: "/collections/handbags" },
     { label: "Cosmetic/Mackup Bags", path: "/" },
     { label: "Acryclic Bags", path: "/" },
     { label: "Engraved bags", path: "/" },

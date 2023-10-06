@@ -96,32 +96,56 @@ const WatchAndBuy = () => {
     const closeModal = () => {
       setSelectedVideo(null);
     };
-
+    const NextArrow = (props) => {
+      const { className, onClick } = props;
+      return (
+        <div
+          className={`${className} absolute top-1/2 -mt-10 right-4 z-10 bg-blue-500 rounded-full p-2 cursor-pointer`}
+          onClick={onClick}
+        >
+          Next
+        </div>
+      );
+    }
+  
+    const PrevArrow = (props) => {
+      const { className, onClick } = props;
+      return (
+        <div
+          className={`${className} absolute top-1/2 -mt-10 left-4 z-10 bg-red-500 rounded-full p-2 cursor-pointer`}
+          onClick={onClick}
+        >
+          Prev
+        </div>
+      );
+    }
 
     const settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 6,
-        slidesToScroll: 4,
-        responsive: [
-            {
-                breakpoint: 1024, // Medium screen size (md)
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 3,
-                }
-            },
-            {
-                breakpoint: 768, // Small screen size (sm)
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                }
-            }
-        ]
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 6,
+      slidesToScroll: 4,
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 3,
+          }
+        },
+        {
+          breakpoint: 768,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+          }
+        }
+      ],
+      nextArrow: <NextArrow />, // Custom next arrow component
+      prevArrow: <PrevArrow />  // Custom previous arrow component
     };
-
+  
     
     return (
         <>

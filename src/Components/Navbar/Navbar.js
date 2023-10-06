@@ -4,13 +4,19 @@ import logo from './New_Astore_logo1_500x.png';
 import NavMenu from './NavMenu';
 import MenuItems from './MenuItems';
 import {LuAlignLeft} from 'react-icons/lu'
+import Login from './LoginRegisterToggle/Login';
+
 
 
 const Navbar = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isFormOpen,setIsFormOpen]= useState(false)
  
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
+  }
+  const toggleForm = ()=>{
+    setIsFormOpen(!isFormOpen)
   }
  
 
@@ -32,7 +38,16 @@ const Navbar = () => {
           <AiOutlineSearch className="text-2xl cursor-pointer" />
         </div>
         <div className="mr-4">
-          <AiOutlineUser className="text-2xl cursor-pointer" />
+        {isFormOpen && (
+        <div className="fixed top-0 right-0 h-full w-96 bg-white shadow-lg z-50 overflow-y-auto">
+          <div className="flex justify-end p-2 text-gray-500">
+            
+            <AiOutlineClose className=" text-2xl cursor-pointer" onClick={toggleForm} />
+          </div>
+          <Login toggleForm={toggleForm} /> 
+        </div>
+      )}
+          <AiOutlineUser className="text-2xl cursor-pointer" onClick={toggleForm} />
         </div>
         <div>
           <AiOutlineShoppingCart className="text-2xl cursor-pointer" />
@@ -40,16 +55,14 @@ const Navbar = () => {
       </div>
       
       {isDrawerOpen && (
-        <div className="fixed top-0 left-0 h-full w-64 bg-gray-200 shadow-lg "
-          style={{ transition: "width 2s, opacity 0.5s" }}
-        >
-          <div className="flex justify-between p-2 text-white bg-black">
-            <span>MENU</span>
-            <AiOutlineClose className=" text-2xl cursor-pointer" onClick={toggleDrawer} />
-          </div>
-          <MenuItems/>
-        </div>
-      )}
+  <div className="fixed top-0 left-0 h-full w-64 bg-white shadow-lg z-50">
+    <div className="flex justify-between p-2 text-white bg-black">
+      <span>MENU</span>
+      <AiOutlineClose className=" text-2xl cursor-pointer" onClick={toggleDrawer} />
+    </div>
+    <MenuItems/>
+  </div>
+)}
     </nav>
   );
 }
