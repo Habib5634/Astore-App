@@ -1,14 +1,52 @@
-import React, { useState } from 'react'
-import data from './HandbagsCollection'
-import {AiOutlineEye} from 'react-icons/ai'
-import {HiShoppingBag} from 'react-icons/hi'
-import {BsStarFill,BsStarHalf,BsStar} from 'react-icons/bs'
-const AllBags = () => {
-    const [hoveredItem, setHoveredItem] = useState(null)
+  import React, { useEffect, useState } from 'react'
+  import data from './HandbagsCollection'
+  import {AiOutlineEye} from 'react-icons/ai'
+  import {HiShoppingBag} from 'react-icons/hi'
+  import {BsStarFill,BsStarHalf,BsStar} from 'react-icons/bs'
+  const AllBags = () => {
+      const [hoveredItem, setHoveredItem] = useState(null)
+      const [currentPage, setCurrentPage] = useState(1);
+      const [postPerPage] = useState(10);
+      const [pagesToShow] = useState(5);
+  
+    
+      const totalPosts = data.length;
+      const totalPageNumbers = Math.ceil(totalPosts / postPerPage);
+  
+      let startPage, endPage;
+      if (totalPageNumbers <= pagesToShow) {
+          startPage = 1;
+          endPage = totalPageNumbers;
+      } else {
+          const halfPagesToShow = Math.floor(pagesToShow / 2);
+          if (currentPage <= halfPagesToShow) {
+              startPage = 1;
+              endPage = pagesToShow;
+          } else if (currentPage + halfPagesToShow >= totalPageNumbers) {
+              startPage = totalPageNumbers - pagesToShow + 1;
+              endPage = totalPageNumbers;
+          } else {
+              startPage = currentPage - halfPagesToShow;
+              endPage = currentPage + halfPagesToShow;
+          }
+      }
+  
+      const pageNumbers = [];
+      for (let i = startPage; i <= endPage; i++) {
+          pageNumbers.push(i);
+      }
+  
+      const handlePageClick = (pageNumber) => {
+          setCurrentPage(pageNumber);
+      };
+  
+      const indexOfLastPost = currentPage * postPerPage;
+      const indexOfFirstPost = indexOfLastPost - postPerPage;
+      const currentPost = data.slice(indexOfFirstPost, indexOfLastPost);
   return (
     <>
     <div className='flex flex-wrap justify-center space-x-4 mt-10 overflow-hidden'>
-      {data.map((item) => (
+      {currentPost.map((item) => (
         <div
           key={item.id}
           className="flex flex-col justify-center w-1/6 h-1/6 items-center mb-4"
@@ -49,6 +87,27 @@ const AllBags = () => {
         </div>
       ))}
     </div>
+    <div className="flex justify-center mt-4">
+                {currentPage > 1 && (
+                    <button onClick={() => handlePageClick(currentPage - 1)} className="mx-2  text-black font-medium py-2 px-4 rounded">
+                        Prev
+                    </button>
+                )}
+                {pageNumbers.map(number => (
+                    <button
+                        key={number}
+                        onClick={() => handlePageClick(number)}
+                        className={`mx-2  text-black font-medium py-2 px-4 rounded ${currentPage === number ? 'text-red-500' : ''}`}
+                    >
+                        {number}
+                    </button>
+                ))}
+                {currentPage < totalPageNumbers && (
+                    <button onClick={() => handlePageClick(currentPage + 1)} className="mx-2 font-medium text-black  py-2 px-4 rounded">
+                        Next
+                    </button>
+                )}
+            </div>
   </>
   )
 }
