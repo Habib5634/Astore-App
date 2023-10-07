@@ -1,12 +1,20 @@
 import React, { useState } from 'react'
 import Banners from '../../../Components/Banners/Banners'
 import Navbar from '../../../Components/Navbar/Navbar'
-import { hover } from '@testing-library/user-event/dist/hover';
-import {AiOutlineEye} from 'react-icons/ai'
-import {HiShoppingBag} from 'react-icons/hi'
+
+import Footer from '../../Footer/Footer'
+
+import AllBags from './AllBags';
+import Totebags from './BagCategories/Totebags';
+import Crossbody from './BagCategories/Crossbody';
+import Handle from './BagCategories/Handle';
+import Bucket from './BagCategories/Bucket';
+import Premium from './BagCategories/Premium';
+import Shoulder from './BagCategories/Shoulder';
+import BagsFooter from './BagsFooter';
 const Handbags = () => {
     const [selectedLayout, setSelectedLayout] = useState('allbags');
-    const [hovered, setHovered] = useState(false);
+    
   return (
     <>
     <Banners/>
@@ -67,32 +75,18 @@ const Handbags = () => {
                 </div>
             </div>
             <div className="">
-                {selectedLayout === 'allbags' && <div className="flex justify-center items-center h-screen">
-      <div
-        className="relative w-64 h-64 bg-gray-200 transition-transform transform hover:scale-110"
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-      >
-        <img
-          src={hovered ? 'https://astore.pk/cdn/shop/products/drmadihaweb2_a8d1a043-9230-4fb1-89a4-f5082858a23a_360x.jpg?v=1686558270' : 'https://astore.pk/cdn/shop/files/maroon1_49bf5a9c-d31e-4b89-859f-73fced54e325_360x.jpg?v=1686558270'}
-          alt="Image"
-          className="w-full h-full object-cover"
-        />
-        {hovered? <div className=' flex flex-col justify-between'>
-            <AiOutlineEye className='text-white m-2 text-4xl top-8 right-8 absolute bg-gray-500 p-2 cursor-pointer rounded-full'/>
-<HiShoppingBag className='text-white m-2 text-4xl bottom-8 right-8 absolute bg-rose-900 p-2 cursor-pointer rounded-full'/>
-        </div>:""}
-      </div>
-    </div>}
-                {selectedLayout === 'totebags' && "tote"}
-                {selectedLayout === 'crossbodybags' && "crossbody"}
-                {selectedLayout === 'shoulderbags' && "shoulder"}
-                {selectedLayout === 'bucketbags' && "bucket"}
-                {selectedLayout === 'handlebags' && "handle"}
-                {selectedLayout === 'premiumbags' && "premium"}
+                {selectedLayout === 'allbags' && <AllBags/>}
+                {selectedLayout === 'totebags' && <Totebags/>}
+                {selectedLayout === 'crossbodybags' && <Crossbody/>}
+                {selectedLayout === 'shoulderbags' && <Shoulder/>}
+                {selectedLayout === 'bucketbags' && <Bucket/>}
+                {selectedLayout === 'handlebags' && <Handle/>}
+                {selectedLayout === 'premiumbags' && <Premium/>}
                 <hr />
             </div>
         </div>
+        <BagsFooter/>
+        <Footer/>
     </>
   )
 }
