@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Banners from '../../../Components/Banners/Banners'
 import Navbar from '../../../Components/Navbar/Navbar'
 
@@ -12,8 +12,20 @@ import Bucket from './BagCategories/Bucket';
 import Premium from './BagCategories/Premium';
 import Shoulder from './BagCategories/Shoulder';
 import BagsFooter from './BagsFooter';
+import { useParams } from 'react-router-dom';
 const Handbags = () => {
     const [selectedLayout, setSelectedLayout] = useState('allbags');
+
+    const { layoutType } = useParams();
+
+  useEffect(() => {
+    console.log(layoutType);
+    if (layoutType === 'totebag') {
+      setSelectedLayout('totebags');
+    } else {
+      setSelectedLayout('allbags');
+    }
+  }, [layoutType]);
     
   return (
     <>

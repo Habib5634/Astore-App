@@ -3,6 +3,7 @@ import BagToggle from './SubMenus/BagToggle'
 import ClothingLineToggle from './SubMenus/ClothingLineToggle';
 import JewelleryToggle from './SubMenus/JewelleryToggle';
 import AccessoriesToggle from './SubMenus/AccessoriesToggle';
+import { Link } from 'react-router-dom';
 const MenuItems = () => {
   return (
     <>
@@ -27,9 +28,10 @@ const MenuItems = () => {
           <li className="flex w-full cursor-pointer hover:underline underline-offset-4 items-center px-4 py-2 text-sm font-semibold ">
             Bundle Sale
           </li>
-          <li className="flex w-full cursor-pointer hover:underline underline-offset-4 items-center px-4 py-2 text-sm font-semibold ">
+         <Link to='/customerreviews'> <li className="flex w-full cursor-pointer hover:underline underline-offset-4 items-center px-4 py-2 text-sm font-semibold ">
             Customer Reviews
           </li>
+          </Link>
           <li className="flex w-full cursor-pointer hover:underline underline-offset-4 items-center px-4 py-2 text-sm font-semibold ">
             Contact us
           </li>

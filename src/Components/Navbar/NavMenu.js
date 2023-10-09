@@ -17,7 +17,7 @@ const NavMenu = () => {
         <span className='flex  text-gray-700 font-semibold'> Menu <AiOutlineDown className='mt-2 text-xs text-gray-500 ml-1'/></span>
        
         {navMenu && 
-        <ul className="absolute bg-white w-44 rounded-xl py-3 shadow-xl text-black"><MenuItems/></ul>
+        <ul className="absolute bg-white w-44 z-50 rounded-xl py-3 shadow-xl text-black"><MenuItems/></ul>
         }
       </li>
    

@@ -3,11 +3,11 @@ import {AiOutlineRight} from 'react-icons/ai'
 import { useNavigate } from 'react-router-dom';
 const listItems = [
     { label: "All", path: "/collections/handbags" },
-    { label: "Cosmetic/Mackup Bags", path: "/" },
-    { label: "Acryclic Bags", path: "/" },
-    { label: "Engraved bags", path: "/" },
+    { label: "Cosmetic/Mackup Bags", path: "/collections/handbags/cosmeticbag" },
+    { label: "Acryclic Bags", path: "/collections/handbags/arcylicbag" },
+    { label: "Engraved bags", path: "/collections/handbags/engraveyard" },
     { label: "Clutches", path: "/" },
-    { label: "Tote Bags", path: "/" },
+    { label: "Tote Bags", path: "/collections/handbags/totebag" },
     { label: "Crossbody bags", path: "/" },
     { label: "Bucket Bags", path: "/" },
     { label: "Shoulder Bags", path: "/" },
@@ -28,7 +28,7 @@ const BagToggle = () => {
     <>
         <li onMouseEnter={()=>setBarMenu(true)}
         onMouseLeave={()=>setBarMenu(false)}
-        className=" cursor-pointer items-center   justify-center rounded-xl   px-4 py-2.5 text-sm font-semibold text-black "
+        className=" cursor-pointer items-center   justify-center rounded-xl    px-4 py-2.5 text-sm font-semibold text-black "
         style={{listStyle:"none"}}
         >
             <span className='w-full flex justify-between'>
@@ -40,7 +40,7 @@ const BagToggle = () => {
          {listItems.map((item, index) => (
            <li
              key={index}
-             className="flex w-full cursor-pointer hover:underline underline-offset-4 items-center px-4 py-2 text-sm font-semibold"
+             className="flex w-full cursor-pointer z-10 hover:underline underline-offset-4 items-center px-4 py-2 text-sm font-semibold"
              onClick={() => handleItemClick(item.path)}
            >
              {item.label}
