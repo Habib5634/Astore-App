@@ -8,6 +8,8 @@ import {HiShoppingBag} from 'react-icons/hi'
 import BagsFooter from '../BagsFooter'
 import Footer from '../../../Footer/Footer'
 import ProductModal from '../../../ProductModal/ProductModel'
+import { useCart } from '../../../CartContext/CartContext.';
+import { useNavigate } from 'react-router-dom'
 const CosmeticBags = () => {
 
     const [hoveredItem, setHoveredItem] = useState(null)
@@ -15,9 +17,10 @@ const CosmeticBags = () => {
       const [postPerPage] = useState(10);
       const [pagesToShow] = useState(5);
   
-
+      const { dispatch } = useCart()
       const [isModalOpen, setIsModalOpen] = useState(false);
       const [selectedItem, setSelectedItem] = useState(null);
+      const navigate = useNavigate()
     
       const openModal = (item) => {
         setSelectedItem(item);
@@ -27,6 +30,8 @@ const CosmeticBags = () => {
       const closeModal = () => {
         setIsModalOpen(false);
       };
+
+      // Pagination
     
       const totalPosts = data.length;
       const totalPageNumbers = Math.ceil(totalPosts / postPerPage);
@@ -61,6 +66,13 @@ const CosmeticBags = () => {
       const indexOfLastPost = currentPage * postPerPage;
       const indexOfFirstPost = indexOfLastPost - postPerPage;
       const currentPost = data.slice(indexOfFirstPost, indexOfLastPost);
+      // Pagination
+
+      // ca
+      const handleAddToCart = (item) => {
+        dispatch({ type: 'ADD_TO_CART', payload: { ...item, quantity: 1 } });
+        navigate('/cart')
+      };
   return (
     <>
      <Banners />
@@ -86,10 +98,13 @@ const CosmeticBags = () => {
               {hoveredItem === item.id && (
                 <div className='flex flex-col justify-between'>
                   <AiOutlineEye
+                  title="Quick View"
                     className={`text-white m-2 text-4xl top-8  animate-pulse absolute bg-gray-500 p-2 cursor-pointer rounded-full right-8 transition-all duration-500`}
                     onClick={() => openModal(item)} // Open modal on eye button click
                   />
                   <HiShoppingBag
+                  title="Add To Cart"
+                  onClick={() => handleAddToCart(item)}
                     className={`text-white m-2 text-4xl bottom-8 animate-pulse absolute bg-rose-900 p-2 cursor-pointer rounded-full right-8 transition-all duration-500`}
                   />
                 </div>

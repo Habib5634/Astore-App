@@ -22,7 +22,8 @@ const Navbar = () => {
 
   
   return (
-    <nav className="flex items-center justify-between p-4 w-full">
+    <div className="sticky top-0 bg-white w-full z-50">
+    <nav className="flex items-center justify-between p-4 ">
       <div className="flex items-center">
        
           <LuAlignLeft className="text-2xl cursor-pointer md:hidden" onClick={toggleDrawer} />
@@ -64,6 +65,7 @@ const Navbar = () => {
   </div>
 )}
     </nav>
+    </div>
   );
 }
 
