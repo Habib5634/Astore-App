@@ -2,36 +2,41 @@ import React, { useState } from 'react';
 import { AiOutlineRight, AiOutlineLeft, AiOutlineClose } from 'react-icons/ai'
 import { Link, useNavigate } from 'react-router-dom';
 import {BsFacebook,BsTwitter,BsInstagram} from 'react-icons/bs'
+import { useCart } from '../../Pages/CartContext/CartContext.'
+
 
 const ProductModal = ({ item, onClose }) => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [quantity, setQuantity] = useState(1);
     const navigate = useNavigate(); // Initialize the navigate function
+    const { state, dispatch } = useCart();
 
     const handleNextImage = () => {
         if (currentImageIndex < item.images.length - 1) {
-            setCurrentImageIndex(currentImageIndex + 1);
+          setCurrentImageIndex(currentImageIndex + 1);
         }
-    };
-
-    const handlePrevImage = () => {
-        if (currentImageIndex > 0) {
-            setCurrentImageIndex(currentImageIndex - 1);
-        }
-    };
-
-    const incrementQuantity = () => {
-        setQuantity(prevQuantity => prevQuantity + 1);
-    };
-
-    const decrementQuantity = () => {
-        if (quantity > 1) {
-            setQuantity(prevQuantity => prevQuantity - 1);
-        }
-    };
-    const handleViewDetails = () => {
-        navigate('/product-detail-page', { state: { item } }); // Use navigate to go to product-detail-page
       };
+    
+      const handlePrevImage = () => {
+        if (currentImageIndex > 0) {
+          setCurrentImageIndex(currentImageIndex - 1);
+        }
+      };
+    
+      const incrementQuantity = () => {
+        setQuantity(prevQuantity => prevQuantity + 1);
+      };
+    
+      const decrementQuantity = () => {
+        if (quantity > 1) {
+          setQuantity(prevQuantity => prevQuantity - 1);
+        }
+      };
+   
+      const handleAddToCart = () => {
+        dispatch({ type: 'ADD_TO_CART', payload: { ...item, quantity } });
+        navigate('/cart');
+    };
     return (
         <div className="fixed z-10 inset-0 overflow-y-auto">
             <div className="flex items-center justify-center min-h-screen pt-4 px-4 pb-10 text-center sm:block sm:p-0">
@@ -93,14 +98,11 @@ const ProductModal = ({ item, onClose }) => {
                                         +
                                     </button>
                                     <button
-                                        className="block w-full px-4 py-2 mt-2 bg-green-500 text-white font-semibold text-center rounded"
-                                        onClick={() => {
-                                            // Add to cart logic here
-                                            onClose();
-                                        }}
-                                    >
-                                        Add to Cart
-                                    </button>
+        className="block w-full px-4 py-2 mt-2 bg-green-500 text-white font-semibold text-center rounded"
+        onClick={handleAddToCart}
+      >
+        Add to Cart
+      </button>
                                 </div>
 
                                         <h1 className='mt-6'>SKU: {item.title}</h1>

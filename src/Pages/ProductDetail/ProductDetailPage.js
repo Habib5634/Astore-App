@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 // import { useParams } from 'react-router-dom';
 import data from '../../Pages/ProductsCollection/ProductsCollection'
 import { AiOutlineRight, AiOutlineLeft,AiOutlineShoppingCart } from 'react-icons/ai';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Banners from '../../Components/Banners/Banners';
 import Navbar from '../../Components/Navbar/Navbar';
 import Footer from '../Footer/Footer';
 import {BsStarFill,BsStarHalf,BsStar} from 'react-icons/bs'
-
+import { useCart } from '../../Pages/CartContext/CartContext.'
 
 const getProductById = (id) => {
     // Assuming products is an array of products
@@ -17,7 +17,9 @@ const ProductDetailPage = () => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [quantity, setQuantity] = useState(1);
     const { id } = useParams();
+    const { state, dispatch } = useCart();
   const product = getProductById(id);
+  const navigate = useNavigate()
   
     if (!product) {
       return <div>Product not found.</div>;
@@ -45,6 +47,12 @@ const ProductDetailPage = () => {
       if (quantity > 1) {
         setQuantity(prevQuantity => prevQuantity - 1);
       }
+    };
+    
+  
+    const handleAddToCart = () => {
+        dispatch({ type: 'ADD_TO_CART', payload: { ...product, quantity } });
+        navigate('/cart');
     };
   
     return (
@@ -114,13 +122,11 @@ const ProductDetailPage = () => {
                 +
               </button>
               <button
-                className="block w-full px-4 py-2 mt-2 bg-green-500 text-white font-semibold text-center rounded"
-                onClick={() => {
-                  // Add to cart logic here
-                }}
-              >
-                Add to Cart
-              </button>
+        className="block w-full px-4 py-2 mt-2 bg-green-500 text-white font-semibold text-center rounded"
+        onClick={handleAddToCart}
+      >
+        Add to Cart
+      </button>
             </div>
           <button className='w-full text-white mt-4 bg-rose-950 animate-bounce text-xl rounded-lg flex justify-center items-center py-2'><AiOutlineShoppingCart className='text-2xl '/>ORDER NOW</button>
 
