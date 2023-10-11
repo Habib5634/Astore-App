@@ -50,7 +50,7 @@ const Totebags = () => {
       {currentPost.map((item) => (
         <div
           key={item.id}
-          className="flex flex-col justify-center w-1/6 h-1/6 items-center mb-4"
+          className="flex flex-col justify-center w-5/6 h-5/6 sm:w-2/5 sm:h-2/5 md:h-1/4 md:w-1/5 lg:h-1/6 lg:w-1/6 items-center mb-4"
           onMouseEnter={() => setHoveredItem(item.id)}
           onMouseLeave={() => setHoveredItem(null)}
         >

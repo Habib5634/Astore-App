@@ -32,9 +32,10 @@ const MenuItems = () => {
             Customer Reviews
           </li>
           </Link>
-          <li className="flex w-full cursor-pointer hover:underline underline-offset-4 items-center px-4 py-2 text-sm font-semibold ">
+            <Link to='/contact'>  <li className="flex w-full cursor-pointer hover:underline underline-offset-4 items-center px-4 py-2 text-sm font-semibold ">
             Contact us
           </li>
+          </Link>
           <hr className="my-3 border-hr" />
           <li className="flex w-full cursor-pointer hover:underline underline-offset-4 items-center px-4 py-2 text-sm font-semibold text-text">
             Logout

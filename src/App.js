@@ -7,6 +7,8 @@ import CustomerReviewsPage from "./Pages/CustomerReviews/CustomerReviewsPage";
 import EngraveyardBag from "./Pages/Collections/Handbags/Engravedyardbag/EngraveyardBag";
 import ProductDetailPage from "./Pages/ProductDetail/ProductDetailPage";
 import CartPage from "./Pages/CartContext/Cart";
+import About from "./Pages/About/About";
+import Contact from "./Pages/Contact/Contact";
 
 
 function App() {
@@ -22,6 +24,8 @@ function App() {
       <Route path='/collections/handbags/engraveyard' exact element={<EngraveyardBag/>}/>
       <Route path='/product-detail-page/:id' exact element={<ProductDetailPage/>}/>
       <Route path='/cart' exact element={<CartPage/>}/>
+      <Route path='/about' exact element={<About/>}/>
+      <Route path='/contact' exact element={<Contact/>}/>
 
     </Routes>
       

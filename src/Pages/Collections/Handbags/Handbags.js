@@ -35,7 +35,7 @@ const Handbags = () => {
 
       <div className="">
             
-            <div className="flex justify-center space-x-4   border-gray-300">
+            <div className="flex justify-center flex-wrap space-x-4   border-gray-300">
                 <div
                     className={` border-b text-sm text-center text-black hover:text-rose-700  transition-all duration-500  hover:underline hover:underline-offset-4 font-medium  cursor-pointer   mt-16 ${selectedLayout === 'allbags' ? 'text-rose-950 underline underline-offset-4 ' : ''
                         }`}

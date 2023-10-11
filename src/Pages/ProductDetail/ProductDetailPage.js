@@ -176,14 +176,17 @@ const ProductDetailPage = () => {
       </div>
 
       {isCartDrawerOpen && (
-        <div className="fixed top-0 right-0 h-full w-96 bg-white shadow-lg z-50 overflow-y-auto">
-          <div className="flex justify-end p-2 text-gray-500">
-            
-            <AiOutlineClose className=" text-2xl cursor-pointer" onClick={toggleCartDrawer} />
-          </div>
-        <CartDrawer/>
-        </div>
-      )}
+  <>
+    <div className="fixed top-0 left-0 w-full h-full bg-black opacity-50 z-40"></div>
+    <div className="fixed top-0 right-0 h-full w-96 bg-white shadow-lg z-50 overflow-y-auto">
+      <div className="flex justify-end p-2 text-gray-500">
+        <AiOutlineClose className=" text-2xl cursor-pointer" onClick={toggleCartDrawer} />
+      </div>
+      <CartDrawer/>
+    </div>
+  </>
+)}
+
       <Footer/>
       </>
     );

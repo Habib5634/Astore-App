@@ -39,7 +39,7 @@ const CartPage = () => {
       <h1 className="text-3xl font-bold mb-4 text-center ">Your Cart</h1>
       <table className="min-w-full border border-collapse">
         <thead>
-          <tr className="border-b">
+          <tr className="border-b"> 
             <th className="p-2">Product</th>
             <th className="p-2">Price</th>
             <th className="p-2">Quantity</th>
@@ -90,10 +90,12 @@ const CartPage = () => {
         <div className='bg-gray-100 p-4 w-2/5 m-2'>
         <h1 className="text-2xl font-bold mb-4 uppercase my-4 text-center">Carts Total</h1>
 
+
         <div className='flex justify-between px-2 border-b-2 pb-2'>
           <h1 className='font-bold '>Subtotal</h1>
           <h1>Rs.{total}</h1>
         </div>
+     
         <div className='flex justify-between px-2 mt-4 border-b-2 pb-2'>
           <h1 className='font-bold '>Shipping</h1>
           <h1>Shipping & taxes calculated at checkout</h1>

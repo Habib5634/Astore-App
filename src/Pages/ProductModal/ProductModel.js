@@ -3,6 +3,7 @@ import { AiOutlineRight, AiOutlineLeft, AiOutlineClose } from 'react-icons/ai'
 import { Link, useNavigate } from 'react-router-dom';
 import {BsFacebook,BsTwitter,BsInstagram} from 'react-icons/bs'
 import { useCart } from '../../Pages/CartContext/CartContext.'
+import CartDrawer from '../CartContext/CartDrawer';
 
 
 const ProductModal = ({ item, onClose }) => {
@@ -10,6 +11,7 @@ const ProductModal = ({ item, onClose }) => {
     const [quantity, setQuantity] = useState(1);
     const navigate = useNavigate(); // Initialize the navigate function
     const { state, dispatch } = useCart();
+    const [isCartDrawerOpen, setIsCartDrawerOpen] = useState(false);
 
     const handleNextImage = () => {
         if (currentImageIndex < item.images.length - 1) {
@@ -32,12 +34,15 @@ const ProductModal = ({ item, onClose }) => {
           setQuantity(prevQuantity => prevQuantity - 1);
         }
       };
-   
+      const toggleCartDrawer = () => {
+        setIsCartDrawerOpen(!isCartDrawerOpen);
+      }
       const handleAddToCart = () => {
         dispatch({ type: 'ADD_TO_CART', payload: { ...item, quantity } });
-        navigate('/cart');
+        toggleCartDrawer()
     };
     return (
+        <>
         <div className="fixed z-10 inset-0 overflow-y-auto">
             <div className="flex items-center justify-center min-h-screen pt-4 px-4 pb-10 text-center sm:block sm:p-0">
                 <div className="fixed inset-0 transition-opacity">
@@ -103,6 +108,7 @@ const ProductModal = ({ item, onClose }) => {
       >
         Add to Cart
       </button>
+      
                                 </div>
 
                                         <h1 className='mt-6'>SKU: {item.title}</h1>
@@ -128,7 +134,21 @@ const ProductModal = ({ item, onClose }) => {
 
                 </div>
             </div>
+            
         </div>
+        
+        {isCartDrawerOpen && (
+  <>
+    <div className="fixed top-0 left-0 w-full h-full bg-black opacity-50 z-40"></div>
+    <div className="fixed top-0 right-0 h-full w-96 bg-white shadow-lg z-50 overflow-y-auto">
+      <div className="flex justify-end p-2 text-gray-500">
+        <AiOutlineClose className=" text-2xl cursor-pointer" onClick={toggleCartDrawer} />
+      </div>
+      <CartDrawer/>
+    </div>
+  </>
+)}
+        </>
     );
 }
 

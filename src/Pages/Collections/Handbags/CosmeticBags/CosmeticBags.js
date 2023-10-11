@@ -3,13 +3,14 @@ import Navbar from '../../../../Components/Navbar/Navbar'
 import Banners from '../../../../Components/Banners/Banners'
 import {BsStarFill,BsStarHalf,BsStar} from 'react-icons/bs'
 import data from '../../../ProductsCollection/ProductsCollection'
-import {AiOutlineEye} from 'react-icons/ai'
+import {AiOutlineEye,AiOutlineClose} from 'react-icons/ai'
 import {HiShoppingBag} from 'react-icons/hi'
 import BagsFooter from '../BagsFooter'
 import Footer from '../../../Footer/Footer'
 import ProductModal from '../../../ProductModal/ProductModel'
 import { useCart } from '../../../CartContext/CartContext.';
 import { useNavigate } from 'react-router-dom'
+import CartDrawer from '../../../CartContext/CartDrawer'
 const CosmeticBags = () => {
 
     const [hoveredItem, setHoveredItem] = useState(null)
@@ -20,7 +21,8 @@ const CosmeticBags = () => {
       const { dispatch } = useCart()
       const [isModalOpen, setIsModalOpen] = useState(false);
       const [selectedItem, setSelectedItem] = useState(null);
-      const navigate = useNavigate()
+      
+  const [isCartDrawerOpen, setIsCartDrawerOpen] = useState(false);
     
       const openModal = (item) => {
         setSelectedItem(item);
@@ -67,11 +69,13 @@ const CosmeticBags = () => {
       const indexOfFirstPost = indexOfLastPost - postPerPage;
       const currentPost = data.slice(indexOfFirstPost, indexOfLastPost);
       // Pagination
-
+      const toggleCartDrawer = () => {
+        setIsCartDrawerOpen(!isCartDrawerOpen);
+      }
       // ca
       const handleAddToCart = (item) => {
         dispatch({ type: 'ADD_TO_CART', payload: { ...item, quantity: 1 } });
-        navigate('/cart')
+        toggleCartDrawer()
       };
   return (
     <>
@@ -83,7 +87,7 @@ const CosmeticBags = () => {
         {currentPost.map((item) => (
           <div
             key={item.id}
-            className="flex flex-col justify-center w-1/6 h-1/6 items-center mb-4"
+            className="flex flex-col justify-center w-5/6 h-5/6 sm:w-2/5 sm:h-2/5 md:h-1/4 md:w-1/5 lg:h-1/6 lg:w-1/6 items-center mb-4"
             onMouseEnter={() => setHoveredItem(item.id)}
             onMouseLeave={() => setHoveredItem(null)}
           >
@@ -154,6 +158,17 @@ const CosmeticBags = () => {
             {isModalOpen && (
         <ProductModal item={selectedItem} onClose={closeModal} />
       )}
+      {isCartDrawerOpen && (
+  <>
+    <div className="fixed top-0 left-0 w-full h-full bg-black opacity-50 z-40"></div>
+    <div className="fixed top-0 right-0 h-full w-96 bg-white shadow-lg z-50 overflow-y-auto">
+      <div className="flex justify-end p-2 text-gray-500">
+        <AiOutlineClose className=" text-2xl cursor-pointer" onClick={toggleCartDrawer} />
+      </div>
+      <CartDrawer/>
+    </div>
+  </>
+)}
   <BagsFooter/>
   <Footer/>
     </>

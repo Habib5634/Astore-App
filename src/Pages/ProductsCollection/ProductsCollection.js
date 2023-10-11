@@ -35,7 +35,8 @@ const data = [
         price: 2499,
         realPrice:'4,000',
         rating: 4.5,
-        reviews:"38",images:[
+        reviews:"38",
+        images:[
             "https://astore.pk/cdn/shop/products/brown7_0827117e-ba4d-4e97-9725-7e73a98c3311_500x.jpg?v=1678179139",
             "https://astore.pk/cdn/shop/products/brown6_3209b618-0ee9-405f-9718-755ceb838085_500x.jpg?v=1678179139",
             "https://astore.pk/cdn/shop/products/brown5_9b766a42-1f7c-440b-81d2-720203123061_500x.jpg?v=1678179139",
