@@ -10,10 +10,12 @@ import CartPage from "./Pages/CartContext/Cart";
 import About from "./Pages/About/About";
 import Contact from "./Pages/Contact/Contact";
 
-
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 function App() {
   return (
     <>
+    <ToastContainer />
     <Routes>
       <Route path='/' element={<LandingPage/>}/>
       <Route path='/collections/handbags' element={<Handbags/>}/>
